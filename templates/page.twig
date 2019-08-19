@@ -3,5 +3,7 @@
 {% block content %}
 	<div class="page-template">
 		{{ post.content|raw }}
+
+		{% include "blocks/share_buttons.twig" with {post:post} %}
 	</div>
 {% endblock %}
