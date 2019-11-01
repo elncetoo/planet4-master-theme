@@ -150,6 +150,26 @@ class P4_Master_Site extends TimberSite {
 			}
 		);
 
+		/**
+		 * Apply wpautop to non-block content.
+		 *
+		 * @link https://wordpress.stackexchange.com/q/321662/26317
+		 *
+		 * @param string $block_content The HTML generated for the block.
+		 * @param array  $block         The block.
+		 */
+		add_filter(
+			'render_block',
+			function ( $block_content, $block ) {
+				if ( is_null( $block['blockName'] ) ) {
+					return wpautop( $block_content );
+				}
+				return $block_content;
+			},
+			10,
+			2
+		);
+
 		add_action( 'init', [ $this, 'login_redirect' ], 1 );
 	}
 
