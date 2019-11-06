@@ -505,7 +505,10 @@ class P4_Master_Site extends TimberSite {
 		// CSS files.
 		wp_enqueue_style( 'bootstrap', $this->theme_dir . '/assets/build/bootstrap.min.css', [], '4.1.1' );
 		wp_enqueue_style( 'slick', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css', [], '1.9.0' );
-		wp_enqueue_style( 'parent-style', $this->theme_dir . '/assets/build/style.min.css', [], $css_creation );
+
+		// This loads a linked style file since the relative images paths are outside the build directory
+		wp_enqueue_style( 'parent-style', $this->theme_dir . '/style.min.css', [], $css_creation );
+
 		// JS files.
 		wp_register_script( 'jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', [], '3.3.1', true );
 		wp_enqueue_script( 'main', $this->theme_dir . '/assets/build/index.js', [ 'jquery' ], $js_creation, true );
